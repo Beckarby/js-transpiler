@@ -1,1 +1,7 @@
-hola chao adios mundo goodbye sayonara aloha mundo
+hola chao adios world goodbye sayonara aloha world
+class hola {
+
+}
+class chao {
+
+}
