@@ -2,4 +2,5 @@
 @method cssShadowRoot('body { color: red; }')
 @method addCSS('/styles.css')
 @method addEventListener(select, click, event)
+@method newHTMLInsert(document.querySelector('#parentElement'), 'div', 'color: red; font-size: 20px;', 'testId', 'testClass')
 mundo

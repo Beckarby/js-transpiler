@@ -3,6 +3,8 @@ import { addFetch } from '../methods/addFetch.js';
 import { cssShadowRoot } from '../methods/cssShadowRoot.js';
 import { openShadowRoot } from '../methods/openShadowRoot.js';
 import { addEventListener } from '../methods/addEventListener.js';
+import { defineCustomElement } from '../methods/defineCustomElements.js';
+import { newHTMLInsert } from '../methods/newHTMLInsert.js';
 import { promises as fs} from 'fs';
 
 async function getMethodTemplate(methodName, ...args) {
@@ -17,6 +19,10 @@ async function getMethodTemplate(methodName, ...args) {
       return addFetch(...args);
     case 'addEventListener':
       return addEventListener(...args);
+    case 'defineCustomElements':
+      return defineCustomElement(...args);
+    case 'newHTMLInsert':
+      return newHTMLInsert(...args);
     default:
       throw new Error(`Method ${methodName} not found`);
   }
