@@ -1,7 +1,4 @@
-hola chao adios world goodbye sayonara aloha world
-class hola {
-
-}
-class chao {
-
-}
+@class Hola
+@method cssShadowRoot('body { color: red; }')
+@method addCSS('/styles.css')
+world
