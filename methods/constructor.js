@@ -1,4 +1,4 @@
-const generateConstructor = (...properties) => {
+export function generateConstructor(...properties) {
     let constructorCode = `constructor(props) {
     super();
     this.attachShadow({ mode: 'open' });
@@ -27,15 +27,15 @@ const generateConstructor = (...properties) => {
   
   // @constructor(paramsofconstructor)
   // Ejemplos de uso:
-  console.log("=== without properties ===");
-  console.log(generateConstructor());
+  // console.log("=== without properties ===");
+  // console.log(generateConstructor());
   
-  console.log("\n=== with properties ===");
-  console.log(generateConstructor('images', 'captions', 'autoplay', 'interval'));
+  // console.log("\n=== with properties ===");
+  // console.log(generateConstructor('images', 'captions', 'autoplay', 'interval'));
   
-  console.log("\n=== with invalid properties (error) ===");
-  try {
-    console.log(generateConstructor('validProp', 'invalid-prop'));
-  } catch (e) {
-    console.error(e.message);
-  }
+  // console.log("\n=== with invalid properties (error) ===");
+  // try {
+  //   console.log(generateConstructor('validProp', 'invalid-prop'));
+  // } catch (e) {
+  //   console.error(e.message);
+  // }

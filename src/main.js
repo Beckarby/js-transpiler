@@ -3,8 +3,9 @@ import { addFetch } from '../methods/addFetch.js';
 import { cssShadowRoot } from '../methods/cssShadowRoot.js';
 import { openShadowRoot } from '../methods/openShadowRoot.js';
 import { addEventListener } from '../methods/addEventListener.js';
-import { defineCustomElement } from '../methods/defineCustomElements.js';
 import { newHTMLInsert } from '../methods/newHTMLInsert.js';
+import { generateconnectedCallback } from '../methods/connectedCallback_method.js';
+import { generateConstructor } from '../methods/constructor.js';
 import { promises as fs} from 'fs';
 
 async function getMethodTemplate(methodName, ...args) {
@@ -23,6 +24,10 @@ async function getMethodTemplate(methodName, ...args) {
       return defineCustomElement(...args);
     case 'newHTMLInsert':
       return newHTMLInsert(...args);
+    case 'constructor':
+      return generateConstructor(...args);
+    case 'connectedCallback':
+      return generateconnectedCallback(...args); 
     default:
       throw new Error(`Method ${methodName} not found`);
   }
@@ -30,7 +35,7 @@ async function getMethodTemplate(methodName, ...args) {
 
 async function readAndRewriteFile(filePath) {
   try {
-    const data = await fs.readFile(filePath, 'utf8'); // Specify encoding to get a string
+    const data = await fs.readFile(filePath, 'utf8'); 
 
     if (data.includes('mundo')) {
         console.log('The file contains the word "mundo"');
@@ -43,6 +48,17 @@ async function readAndRewriteFile(filePath) {
           const className = classMatch[1];
           return `class ${className} {\n\n}`;
       }
+
+    const constructorMatch = line.match(/^@constructor\((.*)\)/);
+    if (constructorMatch) {
+      const args = constructorMatch[1].split(',').map(arg => arg.trim());
+      return generateConstructor(...args);
+    }
+
+    const connectedCallbackMatch = line.match(/^@connectedCallback\(\)/);
+    if (connectedCallbackMatch) {
+      return generateconnectedCallback();
+    }
 
       const methodMatch = line.match(/^@method\s+(\w+)\((.*)\)/);
       if (methodMatch) {
