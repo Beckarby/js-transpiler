@@ -1,4 +1,5 @@
 @class Hola
 @method cssShadowRoot('body { color: red; }')
 @method addCSS('/styles.css')
-world
+@method addEventListener(select, click, event)
+mundo
